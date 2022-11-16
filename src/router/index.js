@@ -8,12 +8,18 @@ import RegUser from '../components/pages/reg-user.vue'
 import UpadtePassword from '../components/pages/update-password.vue'
 import ErrorPage from '../components/pages/error-page.vue'
 import UploadProfile from '../components/pages/user-detail-item/upload-profile.vue'
+import DetailInformation from '../components/pages/user-detail-item/detail-information.vue'
+import HeartWord from "../components/pages/user-detail-item/heart-word.vue"
 import {authToken} from '../api/login'
 Vue.use(VueRouter)
 const router = new VueRouter({
     routes: [{
             path: '/',
             redirect: '/home'
+        },
+        {
+            path: '/userdetail',
+            redirect: '/userdetail/modifyuserdetail'
         },
         {
             path: '/login',
@@ -52,6 +58,16 @@ const router = new VueRouter({
                 {
                     path: 'uploadprofile',
                     component: UploadProfile,
+                    meta:{isAuth:true}
+                },
+                {
+                    path: 'detailinformation',
+                    component: DetailInformation,
+                    meta:{isAuth:true}
+                },
+                {
+                    path: 'heartword',
+                    component: HeartWord,
                     meta:{isAuth:true}
                 },
             ]

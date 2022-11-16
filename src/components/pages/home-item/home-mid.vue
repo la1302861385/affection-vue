@@ -1,20 +1,20 @@
 <template>
   <div class="container">
-      <div class="usershow" v-for="item in userDetails" :key="item.id">
+      <div class="usershow" v-for="item in userDetail" :key="item.id">
         <div id="userimg"><img class="img" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.6Z5tewI43AYPg94BjRukQgHaE7?pid=ImgDet&rs=1"/></div>
         <div class="row detail">
             <div class="col-md-12">{{item.nickName}}</div>
         </div>
-        <div class="row detail">
-            <div class="col-md-1">{{item.sex}}</div>
-            <div class="col-md-3">{{age(item.birthday)}}</div>
-            <div class="col-md-3">{{item.height}}</div>
-            <div class="col-md-4">其他职业</div>
+        <div class="detaila">
+            <p>{{item.sex}}<el-divider direction="vertical"></el-divider></p>
+            <p>{{age(item.birthday)}}<el-divider direction="vertical"></el-divider></p>
+            <p>{{item.height}}cm<el-divider direction="vertical"></el-divider></p>
+            <p>其他职业ssssss</p>
         </div>
          <div class="row detail1">
             <div class="col-md-12"></div>
         </div>
-         <el-button class="button1"><i class="el-icon-bell"></i>打个招呼吧</el-button>
+         <el-button class="button1" @click="hello"><i class="el-icon-bell"></i>打个招呼吧</el-button>
       </div>
       <div class="block">
           <el-pagination layout="prev, pager, next" :total="80">
@@ -25,7 +25,17 @@
 
 <script>
 export default {
-    props:["userDetails"],
+    props:['userDetails'],
+    data() {
+        return {
+            userDetail:""
+        }
+    },
+    watch: {
+	userDetails(val){
+		this.userDetail = val;
+	}
+},
     methods: {
         age(strBirthday) {
             var returnAge;
@@ -65,12 +75,19 @@ export default {
             }
 
             return returnAge; //返回周岁年龄
+        },
+        hello(){
+            console.log(this.userDetail)
         }
     },
+    created(){
+         this.userDetail=this.userDetails
+    }
+
 }
 </script>
 
-<style souped>
+<style scoped>
 .container{
     display: flex;
     flex-wrap: wrap;
@@ -80,7 +97,7 @@ export default {
 }
 .usershow{
     position: relative;
-    width: 50%;
+    width: 500px;
     height: 300px;
     background-color: rgba(196, 13, 13, 0);
     border: 0.25px solid rgba(0, 0, 0, 0.103);
@@ -94,38 +111,47 @@ export default {
     background-color: rgba(20, 20, 8, 0.043);
 }
 .detail{
-    background-color: rgba(20, 20, 8, 0);
     position: relative;
-    text-align: center;
     width: 300px;
     height: 35px;
     left: 250px;
     bottom: 170px;
     margin-top: 20px;
+    font-weight: bolder;
     
 }
 .detail1{
-    background-color: rgba(20, 20, 8, 0);
+    background-color: rgba(20, 20, 8, 0.116);
     position: relative;
     text-align: center;
-    width: 300px;
+    width: 260px;
     height: 60px;
     left: 250px;
-    bottom: 170px;
+    bottom: 150px;
     margin-top: 20px;
     
 }
 .button1{
     position: relative;
-    bottom: 165px;
+    bottom: 125px;
     left: 240px;
-    width: 290px;
+    width: 240px;
     height: 50px;
     background-color: rgba(137, 43, 226, 0.155);
 }
 .img{
     width: 200px;
     height: 200px;
+}
+.detaila{
+     display: flex;
+    flex-wrap: wrap;
+    position:absolute;
+    width: 300px;
+    left: 250px;
+    bottom: 180px;
+    background-color: rgba(0, 0, 0, 0);
+    
 }
 
 </style>

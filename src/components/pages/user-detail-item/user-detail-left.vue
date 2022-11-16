@@ -8,12 +8,12 @@
                      <span >个人资料</span>
                  </template>
                  <el-menu-item-group>
-                     <el-menu-item index="1-1">基本资料</el-menu-item>
-                     <el-menu-item index="1-2">详细资料</el-menu-item>
+                     <el-menu-item index="1-1" @click="jumpModifyUserDetail">基本资料</el-menu-item>
+                     <el-menu-item index="1-2" @click="jumpDetailInformation">详细资料</el-menu-item>
                      <el-menu-item index="1-3">工作生活相关</el-menu-item>
                  </el-menu-item-group>
              </el-submenu>
-             <el-menu-item index="2">
+             <el-menu-item index="2" @click="jumpHeartWord">
                  <i class="el-icon-menu"></i>
                  <span slot="title">想说的话</span>
              </el-menu-item>
@@ -39,6 +39,15 @@ export default {
  methods: {
       jumpUploadPorfile(){
         this.$router.push("/userdetail/uploadprofile")
+      },
+      jumpModifyUserDetail(){
+        this.$router.push("/userdetail/modifyuserdetail")
+      },
+      jumpDetailInformation(){
+         this.$router.push("/userdetail/detailinformation")
+      },
+      jumpHeartWord(){
+        this.$router.push("/userdetail/heartword")
       }
     }
 }
