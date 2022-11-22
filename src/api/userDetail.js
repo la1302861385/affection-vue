@@ -36,3 +36,31 @@ export const getUserDetail = ()=>{
         },
     })
 }
+export const addInfoDetail = (infoDetail)=>{
+    return request({
+        url:'/updateDetailInformation',
+        method:'post',
+        headers: {
+            token: localStorage.getItem("token")
+        },
+      data:{
+        nativePlace:JSON.stringify(infoDetail.nativePlace),
+        shape:infoDetail.shape,
+        constellation:infoDetail.constellation,
+        nation:infoDetail.nation,
+        isHaveChild:infoDetail.isHaveChild,
+        isWantChild:infoDetail.isWantChild,
+        whenMarry:infoDetail.whenMarry,
+        weight:infoDetail.weight
+      }
+    })
+}
+export const getInfoDetail = ()=>{
+    return request({
+        url:'/getDetailInformation',
+        method:'get',
+        headers: {
+            token: localStorage.getItem("token")
+        },
+    })
+}

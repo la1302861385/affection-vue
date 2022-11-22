@@ -1,11 +1,12 @@
 <template>
   <div>
     <el-form ref="form" :model="form" label-width="100px" class="form">
-     <el-form-item label="籍贯">
+      <div class="infodiv"></div>
+     <el-form-item label="籍贯" >
                 <el-cascader size="large" 
                 :options="areaoptions" 
                 v-model="form.nativePlace" 
-                style="width:300px">
+                style="width:65vw">
                 </el-cascader>
         </el-form-item>
         <el-form-item label="体型">
@@ -15,8 +16,8 @@
                 </el-select>
         </el-form-item>
          <el-form-item label="体重">
-            <el-slider v-model="form.weight" :max=200 :step=1></el-slider>
-             <span class="demonstration">单位：千克</span>
+            <el-slider v-model="form.weight" :max=200 :step=1 style="width: 50vw"></el-slider>
+             <span class="demonstration">当前选择：{{form.weight}}千克</span>
         </el-form-item>
          <el-form-item label="星座">
             <el-select v-model="form.constellation" placeholder="请选择">
@@ -49,23 +50,26 @@
                 </el-select>
         </el-form-item>
     </el-form>
+    <el-button type="primary"  v-loading="flag" @click="addInfoDetail1" style="position: relative; left:30vw">确认提交</el-button>
   </div>
 </template>
 
 <script>
 import {regionData} from 'element-china-area-data'
+import {addInfoDetail,getInfoDetail} from "../../../api/userDetail"
 export default {
     data() {
       return {
+        flag:false,
         form:{
-          nativePlace:"",
+          nativePlace:[],
           shape:"",
           constellation:"",
           nation:"",
           isHaveChild:"",
           isWantChild:"",
           whenMarry:"",
-          weight:"",
+          weight:0,
         },
          areaoptions: regionData,
          shapeoptions:[
@@ -416,9 +420,47 @@ export default {
         ],
       }
     },
+    methods:{
+      addInfoDetail1(){
+        addInfoDetail(this.form).then(res=>{
+          if(res.msg == "更新成功"){
+            this.$message({
+              message: '更新成功',
+              type: 'success'
+              });
+          }else if(res.msg == "更新失败"){
+             this.$message({
+              message: '更新失败，服务器错误',
+              type: 'fail'
+              });
+          }
+          else if(res.msg == "插入成功"){
+             this.$message({
+              message: '上传成功',
+              type: 'success'
+              });
+          }else{
+             this.$message({
+              message: '上传失败服务器错误',
+              type: 'fail'
+              });
+          }
+        },()=>{
+          this.$router.push("/error")
+        })
+      }
+    },
+    mounted(){
+      getInfoDetail().then(res=>{
+        this.form = res.data;
+        this.form.nativePlace = JSON.parse(res.data.nativePlace)
+   })
+    }
 }
 </script>
 
 <style>
-
+.infodiv{
+  height: 15vh;
+}
 </style>

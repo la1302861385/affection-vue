@@ -1,22 +1,15 @@
 <template>
-<div class="row">
-<div class="col-md-8">
+<div class="row1">
     <el-button class="topspan" type="primary" icon="el-icon-s-home" @click="sendindex">主页</el-button>
-    <el-button class="topspan" type="primary" icon="el-icon-user-solid" @click="sendlogin" v-show="!flag">登陆</el-button>
-    <el-button class="topspan" type="primary" icon="el-icon-s-promotion" @click="sendreg" v-show="!flag">注册</el-button>
     <el-button type="primary topspan" icon="el-icon-search">搜索</el-button>
-</div>
-<div class="col-md-4">
-    <el-button class="topspan" type="primary" icon="el-icon-s-comment">消息</el-button>
-    <el-dropdown class="topspan">
-        <el-button type="primary" icon="el-icon-s-custom" v-show="flag">个人中心</el-button>
+    <el-dropdown>
+        <el-button type="primary" icon="el-icon-s-custom" v-show="flag" class="geren topspan">个人中心</el-button>
         <el-dropdown-menu class="dropdown" slot="dropdown">
             <el-dropdown-item @click.native="jumpUserDetail">修改资料</el-dropdown-item>
             <el-dropdown-item @click.native="jumpUpdatePassword">修改密码</el-dropdown-item>
             <el-dropdown-item @click.native="logout">退出登陆</el-dropdown-item>
         </el-dropdown-menu>
     </el-dropdown>
-</div>
 </div>
 </template>
 
@@ -81,11 +74,12 @@ export default {
 </script>
 
 <style scoped>
-.row{
+.row1{
+    display: flex;
  position: relative;
-    width: 100%;
-    height: 60px;
-    background-color: darkolivegreen;
+    width: 100vw;
+    height: 90px;
+    background-color: #409EFF;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 } 
 .col-md-4{
@@ -99,13 +93,14 @@ export default {
     height: 100%;
 }
 .topspan{
+   top: 30%;
    position: relative;
-   top: 20%;
-   left: 50%;
-   
+   height: 30px;
+   width: 100px;
+   background-color: #409EFF;
 }
-.dropdown
-{
-    width: 8%;
+.geren{
+
 }
+
 </style>

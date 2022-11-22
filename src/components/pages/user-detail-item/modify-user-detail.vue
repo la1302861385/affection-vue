@@ -1,8 +1,9 @@
 <template>
 <div>
-    <el-form ref="form" :model="form" label-width="80px" class="form">
+    <el-form ref="form" :model="form" label-width="80px" class="form1">
+      <div class="a1"></div>
         <el-form-item label="昵称">
-            <el-input v-model="form.nickName" style="width:260px"></el-input>
+            <el-input v-model="form.nickName" style="width:50vw"></el-input>
         </el-form-item>
         <el-form-item label="性别">
             <el-radio-group v-model="form.sex">
@@ -11,19 +12,19 @@
             </el-radio-group>
         </el-form-item>
          <el-form-item label="身高">
-            <el-slider v-model="form.height" :max=210 :step=1 :min=100></el-slider>
-             <span class="demonstration">单位：厘米</span>
+            <el-slider v-model="form.height" :max=210 :step=1 :min=100 style="width:50vw"></el-slider>
+             <span class="demonstration">当前选择：{{form.height}}厘米</span>
         </el-form-item>
         <el-form-item label="工作地点">
                 <el-cascader size="large" 
                 :options="areaoptions" 
-                v-model="form.workPlace" 
-                style="width:300px">
+                v-model="form.workPlace"
+                 popper-class="mzfs-cascader" >
                 </el-cascader>
         </el-form-item>
         <el-form-item label="出生日期">
             <el-col :span="11">
-                <el-date-picker type="date" placeholder="选择日期" v-model="form.birthday" style="width: 100%;">
+                <el-date-picker type="date" placeholder="选择日期" ref="aaa" v-model="form.birthday" style="width: 50vw;" @focus="bl">
                 </el-date-picker>
             </el-col>
         </el-form-item>
@@ -60,6 +61,9 @@ export default {
     name:"UserDetail",
      data() {
       return {
+        props:{
+          checkStrictly: true
+        },
         form: {
           nickName: '',
           birthday: '',
@@ -163,6 +167,10 @@ export default {
         this.flag=false
        }
       },
+      bl(){
+        this.$refs.aaa.blur();
+        
+      }
     },
     mounted() {
       getUserDetail().then(res=>{
@@ -185,6 +193,19 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+.form1{
+  position: relative;
+  width: 90vw;
+  height: 110vh;
+  margin: auto;
+}
+.el-cascader-menu{
+    width:35vw;
+    height: 30vh;
+    min-width: 0vw;
+  }
+.a1{
+  height: 12vh;
+}
 </style>

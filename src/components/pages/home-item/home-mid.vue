@@ -1,24 +1,20 @@
 <template>
-  <div class="container">
+  <div class="container1">
       <div class="usershow" v-for="item in userDetail" :key="item.id">
         <div id="userimg"><img class="img" src="https://tse1-mm.cn.bing.net/th/id/OIP-C.6Z5tewI43AYPg94BjRukQgHaE7?pid=ImgDet&rs=1"/></div>
-        <div class="row detail">
-            <div class="col-md-12">{{item.nickName}}</div>
+        <div class="detail">
+            <div>{{item.nickName}}</div>
         </div>
         <div class="detaila">
-            <p>{{item.sex}}<el-divider direction="vertical"></el-divider></p>
-            <p>{{age(item.birthday)}}<el-divider direction="vertical"></el-divider></p>
-            <p>{{item.height}}cm<el-divider direction="vertical"></el-divider></p>
-            <p>其他职业ssssss</p>
+            {{item.sex}}<el-divider direction="vertical"></el-divider>
+            {{age(item.birthday)}}岁<el-divider direction="vertical"></el-divider>
+            {{item.height}}cm<el-divider direction="vertical"></el-divider>
+            其他职业ssssss
         </div>
-         <div class="row detail1">
-            <div class="col-md-12"></div>
+        <div class="xiangshuo">
+            <hr>
         </div>
          <el-button class="button1" @click="hello"><i class="el-icon-bell"></i>打个招呼吧</el-button>
-      </div>
-      <div class="block">
-          <el-pagination layout="prev, pager, next" :total="80">
-          </el-pagination>
       </div>
   </div>
 </template>
@@ -88,36 +84,38 @@ export default {
 </script>
 
 <style scoped>
-.container{
+.container1{
     display: flex;
     flex-wrap: wrap;
+    width: 100vw;
     position: relative;
-    top:100px;
+    top:30px;
     background-color: rgba(0, 255, 255, 0);
 }
 .usershow{
     position: relative;
-    width: 500px;
+    width: 100vw;
+    max-width: 360px;
     height: 300px;
     background-color: rgba(196, 13, 13, 0);
     border: 0.25px solid rgba(0, 0, 0, 0.103);
 }
 #userimg{
     position: relative;
-    left: 30px;
+    left: 10px;
     top: 50px;
-    width: 200px;
-    height: 200px;
+    width: 40%;
+    height: 50%;
     background-color: rgba(20, 20, 8, 0.043);
 }
 .detail{
     position: relative;
-    width: 300px;
-    height: 35px;
-    left: 250px;
-    bottom: 170px;
-    margin-top: 20px;
+    width:30%;
     font-weight: bolder;
+    left: 50%;
+    bottom: 30%;
+    text-align: center;
+     background-color: rgba(20, 20, 8, 0);
     
 }
 .detail1{
@@ -132,26 +130,34 @@ export default {
     
 }
 .button1{
-    position: relative;
-    bottom: 125px;
-    left: 240px;
-    width: 240px;
-    height: 50px;
+    position: absolute;
+    bottom: 15%;
+    left: 2%;
     background-color: rgba(137, 43, 226, 0.155);
 }
 .img{
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
 }
 .detaila{
      display: flex;
     flex-wrap: wrap;
-    position:absolute;
-    width: 300px;
-    left: 250px;
-    bottom: 180px;
+    position:relative;
+    width: 40%;
     background-color: rgba(0, 0, 0, 0);
+    font-size: 80%;
+    left: 52%;
+    bottom: 26%;
+    text-align: center;
     
+}
+.xiangshuo{
+    position: relative;
+    height: 50%;
+    width: 50%;
+    background-color: rgb(240, 243, 255);
+    left: 45%;
+    bottom: 28%;
 }
 
 </style>

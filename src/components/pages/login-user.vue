@@ -1,7 +1,8 @@
 <template>
-     <div class="container-fluid" id="index">
-         <div class="col-md-3" id="login">
-                 <h1 id="logintitle">请登录</h1><br/>
+         <div id="login">
+            <div>
+                很欢迎来到
+            </div>
              <form action="" id="loginform">
                  <input class="input" type="text" id="username" v-model="username" placeholder="请输入用户名"><br/><br/>
                  <label id="alert"></label><br />
@@ -13,7 +14,6 @@
                  <label >忘记密码</label>
              </div>
          </div>
-     </div>
 </template>
 
 <script>
@@ -70,28 +70,19 @@ export default {
     text-align: center;
 }
 #login{
-    position: absolute;
-    left: 900px;
-    top: 150px;
-    height: 600px;
-    background-color: rgba(215, 231, 250, 0.626);
+    position: relative;
+    height:100vh;
+    background-color: rgba(215, 231, 250, 0.838);
 
 }
 #loginform{
     position: relative;
-    top: 70px; 
+    top: 260px;
     text-align: center;
-}
-#index{
-    height: 881px;
-    background-image: url(../../assets/img/backgroud.png);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
 }
 #logintitle{
     position: relative;
     text-align: center;
-    top: 70px;
 
 }
 .input{
@@ -102,9 +93,9 @@ export default {
     border-bottom: 1px solid #000
 }
 #updatepwd{
-    position: absolute;
+    position:absolute;
     bottom: 0;
-    right: 3px;
+    right: 0;
 }
 .reg{
     color: #000;
